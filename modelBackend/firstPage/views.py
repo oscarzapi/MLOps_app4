@@ -18,3 +18,17 @@ def scoreJson(request):
     
 
     return JsonResponse({'score':scoreOutput})
+
+
+def scoreFile(request):
+    fileObj=request.FILES['filePath']
+    fs=FileSystemStorage()
+    filePathName=fs.save(fileObj.name,fileObj)
+    filePathName=fs.url(filePathName)
+    filePath='.'+filePathName
+
+    dataFile =pd.read_csv(filePath)
+    score=model.predict_proba(dataFile)
+    scoreOutput={j:{'Dropout':k[0],'Graduate':k[1],'Enrolled':k[2]} for j,k in zip(dataFile.index,score)}
+
+    return JsonResponse({'result':scoreOutput})
