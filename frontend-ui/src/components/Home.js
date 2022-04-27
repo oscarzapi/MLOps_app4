@@ -119,7 +119,7 @@ const JsonForm = () => {
                     <table>
                         <tbody>
                             <tr>
-                                <td>This student is likely to {jsonValues.prediction} with a propability of {jsonValues.probability} %</td>
+                                {jsonValues.probability > 0 && <td>This student is likely to {jsonValues.prediction} with a propability of {jsonValues.probability} %</td>}
                             </tr>
                         </tbody>
                     </table>
