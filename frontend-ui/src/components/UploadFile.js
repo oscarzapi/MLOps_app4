@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Table from 'react-bootstrap/Table';
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import '../App.css';
