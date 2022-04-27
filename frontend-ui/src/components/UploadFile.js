@@ -29,6 +29,7 @@ function UploadFile() {
 
     const resp = await fetch(url, reqOpt)
     const resp2 = await resp.json()
+
     setFileValues({
       ...fileValues, respFromServer:resp2.result
     })
@@ -36,6 +37,11 @@ function UploadFile() {
   }
 
   const columns = [
+    {
+      dataField: "id",
+      text: "id",
+      sort: true
+    },
     {
       dataField: "Dropout",
       text: "Dropout",
@@ -63,7 +69,7 @@ function UploadFile() {
       <div>
       {Object.values(fileValues.respFromServer).length > 0 && <BootstrapTable
         bootstrap4
-        keyField="Graduate"
+        keyField="id"
         data={Object.values(fileValues.respFromServer)}
         columns={columns}
         pagination={paginationFactory({ sizePerPage: 5 })}>

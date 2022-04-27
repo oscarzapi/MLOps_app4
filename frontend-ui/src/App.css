@@ -33,3 +33,7 @@ td, th {
 tr:nth-child(even){
   background-color: #dddddddd;
 }
+
+.UploadFile {
+  margin: auto;
+}

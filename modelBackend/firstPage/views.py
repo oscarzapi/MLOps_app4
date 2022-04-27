@@ -29,6 +29,6 @@ def scoreFile(request):
 
     dataFile =pd.read_csv(filePath)
     score=model.predict_proba(dataFile)
-    scoreOutput={j:{'Dropout':k[0],'Graduate':k[1],'Enrolled':k[2]} for j,k in zip(dataFile.index,score)}
+    scoreOutput={j:{'id': j, 'Dropout':k[0],'Graduate':k[1],'Enrolled':k[2]} for j,k in zip(dataFile.index,score)}
 
     return JsonResponse({'result':scoreOutput})

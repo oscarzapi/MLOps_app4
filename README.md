@@ -15,4 +15,4 @@ git branch -M main
 git remote add origin https://github.com/oscarzapi/MLOps_app4.git
 git push -u origin main
 
-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
+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
