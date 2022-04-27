@@ -1,15 +1,35 @@
 import { useState } from 'react';
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
+import { MDBDataTable } from 'mdbreact';
 import '../App.css';
-import "bootstrap/dist/css/bootstrap.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 function UploadFile() {
 
   const [fileValues, setFileValues] = useState({
     selectFile: "",
-    respFromServer: []
+    respFromServer: [],
+    data :{},
+    columns : [
+      {
+        label: 'id',
+          field: 'id',
+          sort: 'asc'
+      },
+      {
+        label: 'Dropout',
+          field: 'Dropout',
+          sort: 'asc'
+      },
+      {
+        label: 'Graduate',
+          field: 'Graduate',
+          sort: 'asc'
+      },
+      {
+        label: 'Enrolled',
+          field: 'Enrolled',
+          sort: 'asc',
+      }
+    ]
   })
 
   const handleSubmit = (event) => {
@@ -31,33 +51,12 @@ function UploadFile() {
     const resp2 = await resp.json()
 
     setFileValues({
-      ...fileValues, respFromServer:resp2.result
+      ...fileValues, respFromServer:resp2.result, data: {'columns':fileValues.columns, 'rows':Object.values(resp2.result)}
     })
     console.log(Object.values(fileValues.respFromServer))
   }
 
-  const columns = [
-    {
-      dataField: "id",
-      text: "id",
-      sort: true
-    },
-    {
-      dataField: "Dropout",
-      text: "Dropout",
-      sort: true
-    },
-    {
-      dataField: "Graduate",
-      text: "Graduate",
-      sort: true
-    },
-    {
-      dataField: "Enrolled",
-      text: "Enrolled",
-      sort: true
-    }
-  ]
+  
 
   
   return (
@@ -67,13 +66,13 @@ function UploadFile() {
         <input type="submit" value="submit"></input>
       </form>
       <div>
-      {Object.values(fileValues.respFromServer).length > 0 && <BootstrapTable
-        bootstrap4
-        keyField="id"
-        data={Object.values(fileValues.respFromServer)}
-        columns={columns}
-        pagination={paginationFactory({ sizePerPage: 5 })}>
-        </BootstrapTable>}
+      {Object.values(fileValues.respFromServer).length > 0 && 
+        <MDBDataTable
+        bordered
+        hover
+        data={fileValues.data}
+      />
+        }
       </div>
     </div>
   );
