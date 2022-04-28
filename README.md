@@ -15,4 +15,4 @@ git branch -M main
 git remote add origin https://github.com/oscarzapi/MLOps_app4.git
 git push -u origin main
 
-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
+## When dockerizing the app, the model from the model folder should be included inside the modelBackend directory in order to the docker image to work.

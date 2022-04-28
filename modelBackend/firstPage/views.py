@@ -6,7 +6,8 @@ from django.core.files.storage import FileSystemStorage
 import joblib
 
 # Create your views here.
-model=joblib.load('../model/modelPipeline.pkl')
+#model=joblib.load('../model/modelPipeline.pkl')
+model=joblib.load('modelPipeline.pkl')
 
 def scoreJson(request):
     data =json.loads(request.body)
